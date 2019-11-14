@@ -49,4 +49,49 @@ public class BranchDeepLinks extends Plugin {
         data.put("error", error);
         notifyListeners(EVENT_INIT_ERROR, data, true);
     }
+
+    @PluginMethod()
+    public void disableTracking(PluginCall call) {
+        Boolean isEnabled = call.getBoolean("isEnabled", false);
+        Branch.getInstance().disableTracking(isEnabled);
+        call.resolve();
+    }
+
+    @PluginMethod()
+    public void setDebug(PluginCall call) {
+        Boolean isEnabled = call.getBoolean("isEnabled", false);
+        Branch.getInstance().setDebug(isEnabled);
+        call.resolve();
+    }
+
+    @PluginMethod()
+    public void setCookieBasedMatching(PluginCall call) {
+        if(!call.getData().has("linkDomain")){
+            call.reject("Must provide linkDomain")
+            return;
+        }
+        String linkDomain = call.getString("linkDomain", "");
+        Branch.getInstance().setCookieBasedMatching(linkDomain);
+        call.resolve();
+    }
+
+    @PluginMethod()
+    public void setIdentity(PluginCall call) {
+        if(!call.getData().has("identity")){
+            call.reject("Please pass identity")
+            return;
+        }
+        String identity = call.getString("identity", "");
+        Branch.getInstance().setIdentity(identity);
+        call.resolve();
+    }
+
+    @PluginMethod()
+    public void logout(PluginCall call) {
+        Branch.getInstance().logout();
+        call.resolve();
+    }
+
+
+   
 }
