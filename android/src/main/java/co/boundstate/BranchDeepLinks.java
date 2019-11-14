@@ -67,7 +67,7 @@ public class BranchDeepLinks extends Plugin {
     @PluginMethod()
     public void setCookieBasedMatching(PluginCall call) {
         if(!call.getData().has("linkDomain")){
-            call.reject("Must provide linkDomain")
+            call.reject("Must provide linkDomain");
             return;
         }
         String linkDomain = call.getString("linkDomain", "");
@@ -78,7 +78,7 @@ public class BranchDeepLinks extends Plugin {
     @PluginMethod()
     public void setIdentity(PluginCall call) {
         if(!call.getData().has("identity")){
-            call.reject("Please pass identity")
+            call.reject("Please pass identity");
             return;
         }
         String identity = call.getString("identity", "");
